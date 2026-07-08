@@ -2,7 +2,7 @@ name: Daily Privacy Scan
 
 on:
   schedule:
-    # Daily at 02:00 UTC
+    # Daily at 02:00 UTC (privacy scan)
     - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
