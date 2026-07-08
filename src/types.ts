@@ -7,6 +7,7 @@ export interface AccountConfig {
   githubUser: string;
   enabled: boolean;
   contactEmail?: string;
+  ccEmail?: string;
   keywords?: string[];
 }
 

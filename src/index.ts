@@ -152,6 +152,7 @@ async function runScan(opts: { account?: string; full: boolean }): Promise<void>
   console.log(`Report written to: ${reportPath}`);
 
   // Email per-account reports to each account's contactEmail
+  // Only sends if there are findings for that account
   for (const account of accounts) {
     if (!account.contactEmail || account.contactEmail.startsWith('REPLACE_')) {
       console.log(`[Email] Account ${account.id}: no contact email configured — skipping.`);
@@ -168,12 +169,12 @@ async function runScan(opts: { account?: string; full: boolean }): Promise<void>
       startedAt,
       finishedAt,
       accountsScanned: 1,
-      reposScanned: reposScanned, // per-account not tracked separately; show total
+      reposScanned: reposScanned,
       commitsScanned: commitsScanned,
       findings: accountFindings,
     });
     const subject = `Privacy Report for ${account.id} — ${accountFindings.length} finding${accountFindings.length === 1 ? '' : 's'} — ${new Date().toISOString().slice(0, 10)}`;
-    await sendReportEmail(account.contactEmail, subject, accountReport);
+    await sendReportEmail(account.contactEmail, account.ccEmail, subject, accountReport);
   }
 }
 

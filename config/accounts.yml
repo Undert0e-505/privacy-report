@@ -3,6 +3,7 @@ accounts:
     githubUser: "matokle-sudo"
     enabled: true
     contactEmail: "aaronjoakley55@gmail.com"
+    ccEmail: "REPLACE_WITH_CC_EMAIL"
     keywords:
       - matt
       - matthew
@@ -15,11 +16,13 @@ accounts:
     githubUser: "REPLACE_WITH_W_HANDLE"
     enabled: false
     contactEmail: "REPLACE_WITH_W_EMAIL"
+    ccEmail: "REPLACE_WITH_W_CC"
     keywords: []
   - id: R
     githubUser: "REPLACE_WITH_R_HANDLE"
     enabled: false
     contactEmail: "REPLACE_WITH_R_EMAIL"
+    ccEmail: "REPLACE_WITH_R_CC"
     keywords: []
 
 scan:

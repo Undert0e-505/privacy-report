@@ -1,4 +1,3 @@
-// src/email.ts — Send report via SMTP (Gmail app password or similar)
 import { createTransport } from 'nodemailer';
 import type { Transporter } from 'nodemailer';
 
@@ -17,6 +16,7 @@ export interface EmailConfig {
  */
 export async function sendReportEmail(
   to: string,
+  cc: string | undefined,
   subject: string,
   body: string,
 ): Promise<boolean> {
@@ -45,14 +45,22 @@ export async function sendReportEmail(
     auth: { user, pass },
   });
 
+  const mailOptions: { from: string; to: string; cc?: string; subject: string; text: string } = {
+    from,
+    to,
+    subject,
+    text: body,
+  };
+
+  // Add CC if provided and not a placeholder
+  if (cc && !cc.startsWith('REPLACE_') && !cc.includes('placeholder')) {
+    mailOptions.cc = cc;
+  }
+
   try {
-    await transporter.sendMail({
-      from,
-      to,
-      subject,
-      text: body,
-    });
-    console.log(`[Email] Report sent to ${to}`);
+    await transporter.sendMail(mailOptions);
+    const ccInfo = mailOptions.cc ? ` (cc: ${mailOptions.cc})` : '';
+    console.log(`[Email] Report sent to ${to}${ccInfo}`);
     return true;
   } catch (err) {
     console.error(`[Email] Failed to send: ${err instanceof Error ? err.message : String(err)}`);
