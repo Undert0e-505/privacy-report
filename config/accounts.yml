@@ -2,12 +2,27 @@ accounts:
   - id: M
     githubUser: "matokle-sudo"
     enabled: true
+    contactEmail: "REPLACE_WITH_M_EMAIL"
+    keywords:
+      - password
+      - secret
+      - token
+      - api_key
+      - private_key
+      - .env
+      - credentials
+      - phone
+      - address
   - id: W
     githubUser: "REPLACE_WITH_W_HANDLE"
     enabled: false
+    contactEmail: "REPLACE_WITH_W_EMAIL"
+    keywords: []
   - id: R
     githubUser: "REPLACE_WITH_R_HANDLE"
     enabled: false
+    contactEmail: "REPLACE_WITH_R_EMAIL"
+    keywords: []
 
 scan:
   includeForks: false
@@ -15,7 +30,3 @@ scan:
   maxFileBytes: 1000000
   redactSecrets: true
   storeExactGps: false
-
-# Report will be emailed to this address after each scan.
-# Replace with M's real email to enable sending.
-contactEmail: "REPLACE_WITH_CONTACT_EMAIL"

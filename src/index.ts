@@ -9,6 +9,7 @@ import { scanForSecretFindings } from './scanners/secrets.js';
 import { scanImageExif, exifToFindings, isImageFile } from './scanners/exif.js';
 import { scanForPiiFindings, isScannableFile } from './scanners/pii.js';
 import { scanForPrivacyRiskFindings } from './scanners/privacyRisk.js';
+import { scanForKeywordFindings } from './scanners/keywords.js';
 import { sendReportEmail } from './email.js';
 import type { Finding, ScanResult } from './types.js';
 
@@ -113,6 +114,12 @@ async function runScan(opts: { account?: string; full: boolean }): Promise<void>
           // Privacy risk scan
           const riskFindings = scanForPrivacyRiskFindings(content, file.path, account.id, repo.fullName, commit.sha);
           findings.push(...riskFindings);
+
+          // Custom keyword scan (per-account keywords)
+          if (account.keywords && account.keywords.length > 0) {
+            const keywordFindings = scanForKeywordFindings(content, file.path, account.id, repo.fullName, commit.sha, account.keywords);
+            findings.push(...keywordFindings);
+          }
         }
       }
 
@@ -144,10 +151,29 @@ async function runScan(opts: { account?: string; full: boolean }): Promise<void>
   console.log(`Findings: ${findings.length}`);
   console.log(`Report written to: ${reportPath}`);
 
-  // Email the report if contactEmail is configured
-  if (config.contactEmail) {
-    const subject = `Privacy Report — ${findings.length} finding${findings.length === 1 ? '' : 's'} — ${new Date().toISOString().slice(0, 10)}`;
-    await sendReportEmail(config.contactEmail, subject, report);
+  // Email per-account reports to each account's contactEmail
+  for (const account of accounts) {
+    if (!account.contactEmail || account.contactEmail.startsWith('REPLACE_')) {
+      console.log(`[Email] Account ${account.id}: no contact email configured — skipping.`);
+      continue;
+    }
+
+    const accountFindings = findings.filter((f) => f.account === account.id);
+    if (accountFindings.length === 0) {
+      console.log(`[Email] Account ${account.id}: no findings — skipping email.`);
+      continue;
+    }
+
+    const accountReport = generateReport({
+      startedAt,
+      finishedAt,
+      accountsScanned: 1,
+      reposScanned: reposScanned, // per-account not tracked separately; show total
+      commitsScanned: commitsScanned,
+      findings: accountFindings,
+    });
+    const subject = `Privacy Report for ${account.id} — ${accountFindings.length} finding${accountFindings.length === 1 ? '' : 's'} — ${new Date().toISOString().slice(0, 10)}`;
+    await sendReportEmail(account.contactEmail, subject, accountReport);
   }
 }
 

@@ -6,6 +6,8 @@ export interface AccountConfig {
   id: string;
   githubUser: string;
   enabled: boolean;
+  contactEmail?: string;
+  keywords?: string[];
 }
 
 export interface ScanConfig {
@@ -19,7 +21,6 @@ export interface ScanConfig {
 export interface AppConfig {
   accounts: AccountConfig[];
   scan: ScanConfig;
-  contactEmail?: string;
 }
 
 export interface Finding {
