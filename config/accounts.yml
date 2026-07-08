@@ -1,6 +1,6 @@
 accounts:
   - id: M
-    githubUser: "REPLACE_WITH_M_HANDLE"
+    githubUser: "matokle-sudo"
     enabled: true
   - id: W
     githubUser: "REPLACE_WITH_W_HANDLE"
@@ -15,3 +15,7 @@ scan:
   maxFileBytes: 1000000
   redactSecrets: true
   storeExactGps: false
+
+# Report will be emailed to this address after each scan.
+# Replace with M's real email to enable sending.
+contactEmail: "REPLACE_WITH_CONTACT_EMAIL"

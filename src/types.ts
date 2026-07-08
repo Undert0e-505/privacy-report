@@ -19,6 +19,7 @@ export interface ScanConfig {
 export interface AppConfig {
   accounts: AccountConfig[];
   scan: ScanConfig;
+  contactEmail?: string;
 }
 
 export interface Finding {

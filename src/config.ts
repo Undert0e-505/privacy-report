@@ -36,6 +36,9 @@ export function loadConfig(configPath?: string): AppConfig {
   scan.redactSecrets ??= true;
   scan.storeExactGps ??= false;
 
+  // contactEmail is optional (placeholder in config)
+  parsed.contactEmail ??= undefined;
+
   return parsed;
 }
 

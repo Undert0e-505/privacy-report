@@ -9,6 +9,7 @@ import { scanForSecretFindings } from './scanners/secrets.js';
 import { scanImageExif, exifToFindings, isImageFile } from './scanners/exif.js';
 import { scanForPiiFindings, isScannableFile } from './scanners/pii.js';
 import { scanForPrivacyRiskFindings } from './scanners/privacyRisk.js';
+import { sendReportEmail } from './email.js';
 import type { Finding, ScanResult } from './types.js';
 
 function parseArgs(args: string[]): { command: string; account?: string; full: boolean } {
@@ -142,6 +143,12 @@ async function runScan(opts: { account?: string; full: boolean }): Promise<void>
   console.log(`\n=== Scan complete ===`);
   console.log(`Findings: ${findings.length}`);
   console.log(`Report written to: ${reportPath}`);
+
+  // Email the report if contactEmail is configured
+  if (config.contactEmail) {
+    const subject = `Privacy Report — ${findings.length} finding${findings.length === 1 ? '' : 's'} — ${new Date().toISOString().slice(0, 10)}`;
+    await sendReportEmail(config.contactEmail, subject, report);
+  }
 }
 
 function runReport(): void {
