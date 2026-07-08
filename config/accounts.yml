@@ -2,17 +2,15 @@ accounts:
   - id: M
     githubUser: "matokle-sudo"
     enabled: true
-    contactEmail: "REPLACE_WITH_M_EMAIL"
+    contactEmail: "aaronjoakley55@gmail.com"
     keywords:
-      - password
-      - secret
-      - token
-      - api_key
-      - private_key
-      - .env
-      - credentials
-      - phone
-      - address
+      - matt
+      - matthew
+      - oakley
+      - new road
+      - great baddow
+      - chelmsford
+      - sandon
   - id: W
     githubUser: "REPLACE_WITH_W_HANDLE"
     enabled: false
