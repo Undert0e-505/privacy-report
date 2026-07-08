@@ -2,8 +2,8 @@ accounts:
   - id: M
     githubUser: "matokle-sudo"
     enabled: true
-    contactEmail: "aaronjoakley55@gmail.com"
-    ccEmail: "REPLACE_WITH_CC_EMAIL"
+    contactEmail: "matttoakley.com"
+    ccEmail: "aaronjoakley55@gmail.com"
     keywords:
       - matt
       - matthew
