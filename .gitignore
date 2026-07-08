@@ -1,5 +1,7 @@
 node_modules/
 dist/
+data/state.sqlite
+data/state.sqlite-*
 reports/*.md
 !reports/.gitkeep
 .env
