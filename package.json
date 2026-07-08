@@ -1,0 +1,26 @@
+{
+  "name": "privacy-report",
+  "version": "1.0.0",
+  "description": "Defensive privacy auditing tool — scans public GitHub content from configured accounts",
+  "type": "module",
+  "scripts": {
+    "scan": "tsx src/index.ts scan",
+    "report": "tsx src/index.ts report",
+    "test": "vitest run",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@octokit/rest": "^21.1.1",
+    "better-sqlite3": "^11.8.1",
+    "dotenv": "^16.4.7",
+    "execa": "^9.5.2",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

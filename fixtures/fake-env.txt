@@ -1,0 +1,5 @@
+DATABASE_URL=postgres://user:secretpassword123@localhost:5432/mydb
+API_KEY=sk-test1234567890abcdef1234567890
+JWT_SECRET=supersecretjwtkey1234567890
+AWS_ACCESS_KEY_ID=AKIATESTKEY12345678
+AWS_SECRET_ACCESS_KEY=abcdefghijklmnopqrstuvwxyz0123456789ABCD

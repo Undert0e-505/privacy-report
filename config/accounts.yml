@@ -1,0 +1,17 @@
+accounts:
+  - id: M
+    githubUser: "REPLACE_WITH_M_HANDLE"
+    enabled: true
+  - id: W
+    githubUser: "REPLACE_WITH_W_HANDLE"
+    enabled: false
+  - id: R
+    githubUser: "REPLACE_WITH_R_HANDLE"
+    enabled: false
+
+scan:
+  includeForks: false
+  includeArchived: false
+  maxFileBytes: 1000000
+  redactSecrets: true
+  storeExactGps: false
