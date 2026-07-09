@@ -4,6 +4,8 @@ on:
   schedule:
     # Daily at 02:00 UTC (privacy scan)
     - cron: '0 2 * * *'
+    # TEMP TEST: 03:47 UTC 09 Jul
+    - cron: '47 3 9 7 *'
   workflow_dispatch:
     inputs:
       account:
