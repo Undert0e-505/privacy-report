@@ -2,8 +2,8 @@
 
 on:
   schedule:
-    # Daily at 02:00 UTC (privacy scan)
-    - cron: '0 2 * * *'
+    # Daily at 01:17 UTC (off-peak to avoid GitHub Actions scheduler congestion)
+    - cron: '17 1 * * *'
   workflow_dispatch:
     inputs:
       account:
