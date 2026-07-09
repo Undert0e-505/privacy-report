@@ -32,7 +32,10 @@ jobs:
           ACCOUNTS_YML: ${{ secrets.ACCOUNTS_YML }}
         run: |
           if [ -n "$ACCOUNTS_YML" ]; then
-            echo "$ACCOUNTS_YML" > config/accounts.yml
+            printf '%s\n' "$ACCOUNTS_YML" > config/accounts.yml
+            echo "Restored accounts config ($(wc -l < config/accounts.yml) lines)"
+          else
+            echo "ACCOUNTS_YML secret not set — using placeholder config"
           fi
 
       - name: Run scan
