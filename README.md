@@ -11,7 +11,7 @@ This tool helps you monitor your own public GitHub presence for accidentally com
 - **Passive scanning only.** Only public GitHub content. Only accounts configured by us.
 - **No exploit attempts.** No vulnerability probing. No password/API-key validation against third-party services.
 - **Redact by default.** Full secrets are never printed in reports.
-- **Reports stay private.** Reports are committed to this private repo, never published or shared publicly.
+- **Reports stay private.** Reports are gitignored and never committed. Only the SQLite state file is committed for incremental scanning.
 - **Respect GitHub API rate limits.** Uses conditional requests and ETags where possible.
 
 ## Setup
@@ -177,4 +177,4 @@ Reports are Markdown files written to `reports/`. They include:
 
 ## License
 
-Private project. Not for distribution.
+MIT — see [LICENSE](LICENSE). Use it, fork it, audit your own GitHub presence.

@@ -16,14 +16,14 @@ This tool is a **defensive privacy auditing tool**. It exists to help account ow
 - **No third-party access.** Only scans accounts we own/control, configured in `config/accounts.yml`
 - **No exploit attempts.** Does not probe for vulnerabilities, validate credentials, or test authentication
 - **No password or API key validation** against any third-party service
-- **No public disclosure.** Reports are committed to this private repo — never published as issues, comments, or public pages
+- **No public disclosure.** Reports are gitignored — never published as issues, comments, or public pages
 - **No scanning of unconfigured accounts.** The account list is explicit and must be manually configured
 
 ## Report handling
 
 - Reports are Markdown files in `reports/`
 - The `reports/` directory is covered by `.gitignore` for `*.md` files (except `.gitkeep`)
-- In CI, reports are committed directly to the private repo
+- In CI, report files are gitignored and never committed to the repo
 - Reports contain redacted evidence only — full secrets are never written to disk in report files
 
 ## API usage

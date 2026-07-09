@@ -27,6 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Restore real accounts config
+        env:
+          ACCOUNTS_YML: ${{ secrets.ACCOUNTS_YML }}
+        run: |
+          if [ -n "$ACCOUNTS_YML" ]; then
+            echo "$ACCOUNTS_YML" > config/accounts.yml
+          fi
+
       - name: Run scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

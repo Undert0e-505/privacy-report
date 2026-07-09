@@ -1,17 +1,11 @@
+# Copy this file to config/accounts.local.yml (gitignored) and fill in real values.
 accounts:
   - id: M
-    githubUser: "matokle-sudo"
-    enabled: true
-    contactEmail: "matttoakley@gmail.com"
-    ccEmail: "aaronjoakley55@gmail.com"
-    keywords:
-      - matt
-      - matthew
-      - oakley
-      - new road
-      - great baddow
-      - chelmsford
-      - sandon
+    githubUser: "REPLACE_WITH_GITHUB_USERNAME"
+    enabled: false
+    contactEmail: "REPLACE_WITH_CONTACT_EMAIL"
+    ccEmail: "REPLACE_WITH_CC_EMAIL"
+    keywords: []
   - id: W
     githubUser: "REPLACE_WITH_W_HANDLE"
     enabled: false
